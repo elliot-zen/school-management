@@ -1,6 +1,6 @@
 "use client"
 
-import { RadialBar, RadialBarChart } from "recharts"
+import { RadialBar, RadialBarChart, ResponsiveContainer } from "recharts"
 import {
     Card,
     CardAction,
@@ -50,18 +50,20 @@ export default function CountChart() {
                     <Image src="/moreDark.png" alt="" width={20} height={20} />
                 </CardAction>
             </CardHeader>
-            <CardContent className="relative pb-0 w-full h-[75%]">
+            <CardContent className="relative px-0 w-full h-[75%]">
                 <ChartContainer
                     config={chartConfig}
-                    className="w-full h-[75%]"
+                    className="w-full h-[100%]"
                 >
-                    <RadialBarChart data={chartData} innerRadius={40} outerRadius={100} barSize={32}>
-                        <ChartTooltip
-                            cursor={false}
-                            content={<ChartTooltipContent hideLabel nameKey="browser" />}
-                        />
-                        <RadialBar dataKey="count" background />
-                    </RadialBarChart>
+                    <ResponsiveContainer width="100%" height="100%">
+                        <RadialBarChart data={chartData} innerRadius="40%" outerRadius="100%">
+                            <ChartTooltip
+                                cursor={false}
+                                content={<ChartTooltipContent hideLabel nameKey="browser" />}
+                            />
+                            <RadialBar dataKey="count" background />
+                        </RadialBarChart>
+                    </ResponsiveContainer>
                 </ChartContainer>
                 <Image src="/maleFemale.png" alt="" width={50} height={50} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
             </CardContent>
